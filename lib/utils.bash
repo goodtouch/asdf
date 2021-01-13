@@ -663,7 +663,7 @@ preset_versions() {
 
 select_from_preset_version() {
   shim_name=$1
-  grep -f <(get_shim_versions "$shim_name") <(preset_versions "$shim_name") | head -n 1 | xargs -IVERSION printf "%s\\n" VERSION
+  preset_versions "$shim_name" | grep -F "$(get_shim_versions "$shim_name")" | head -n 1 | xargs -IVERSION printf "%s\\n" VERSION
 }
 
 select_version() {
